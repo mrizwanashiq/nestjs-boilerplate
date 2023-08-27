@@ -4,7 +4,9 @@ import type { MongooseModuleOptions } from '@nestjs/mongoose';
 export class ConfigrationService {
   get mongooseConfig(): MongooseModuleOptions {
     return {
-      uri: process.env.MONGODB_URI,
+      uri:
+        process.env.MONGODB_URI ||
+        'mongodb://127.0.0.1:27017/nest-boiler-plate',
     };
   }
   get authConfig() {
@@ -21,7 +23,7 @@ export class ConfigrationService {
 
   get appConfig() {
     return {
-      port: process.env.PORT || 3000
+      port: process.env.PORT || 3000,
     };
   }
 

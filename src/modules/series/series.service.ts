@@ -34,7 +34,7 @@ export class SeriesService {
       const series = await this.findSeries(id);
       series.name = updateSeriesDto.name;
       series.description = updateSeriesDto.description;
-      series.genres = updateSeriesDto.genre_id;
+      series.genre_id = updateSeriesDto.genre_id;
       return await series.save();
     } catch (error) {
       throw new HttpException('Error updating series', HttpStatus.BAD_REQUEST);

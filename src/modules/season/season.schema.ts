@@ -49,13 +49,11 @@ export class Season {
   @Prop({ type: 'string', required: true, trim: true })
   description: string;
 
-  // @OneToMany(() => Series, (series) => series.season_id) // Establish the one-to-many relationship
-  // series_id: Series[];
+  // previous
+  @ManyToOne(() => Series, (series) => series.season_id) // Establish the one-to-many relationship
+  series_id: Series[];
 
-  // @ManyToOne(() => Series, (series) => series.season_id)
-  // @JoinColumn({ name: 'series_id' })
-  // series_id: Series;
-
+  // next
   @OneToMany(() => Episode, (episode) => episode.season_id)
   episode_id: Episode[];
 }

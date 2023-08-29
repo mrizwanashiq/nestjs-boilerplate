@@ -4,5 +4,5 @@ export interface Series extends Document {
   id: String;
   name: String;
   description: String;
-  genres: String;
+  genre_id: String;
 }

@@ -40,9 +40,11 @@ export class SeriesController {
     @Param('id') id,
     //   @Headers(JWT_HEADER_PARAM) token,
   ) {
-    const series = await this.seriesService.getSeries(id);
+    const series = await this.seriesService.update(updateSeriesDto, id);
+    return series;
+    // const series = await this.seriesService.getSeries(id);
     //if (userCanDoAction(token, article.author)) {
-    return await this.seriesService.update(updateSeriesDto, id);
+    // return await this.seriesService.update(updateSeriesDto, id);
     //}
     throw new HttpException('NOT_ALLOWED_USER_MESSAGE', HttpStatus.FORBIDDEN);
   }

@@ -15,12 +15,13 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToMany,
+  OneToMany,
   JoinTable,
 } from 'typeorm';
 import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
 import { Exclude, Transform } from 'class-transformer';
-import { SeriesSchema } from '../series/series.schema';
-import { Series } from '../series/interface/series.interface';
+import { Series } from '../series/series.schema';
+// import { Series } from '../series/interface/series.interface';
 export type GenreDocument = Genre & Document;
 @Schema({
   toJSON: {

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 import {
   IsInt,
   IsString,
@@ -47,13 +48,16 @@ export class Series {
   @Prop({ type: 'string', required: true, trim: true })
   description: string;
 
-  @ManyToMany(() => Genre) // Use a string to reference the other class
-  @JoinTable()
-  genre_id: Genre[];
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Genre' }) // Correctly referencing the Genre schema
+  genre_id: Genre | mongoose.Types.ObjectId;
 
-  // @ManyToOne(() => Season, (season) => season.series_id)
-  // season_id: Season;
+  // @Prop({ type: Genre })
+  // genre_id: Genre;
 
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Genre' })
+  // genre_id: Genre;
+
+  // next
   @OneToMany(() => Season, (season) => season.series_id)
   season_id: Season[];
 }

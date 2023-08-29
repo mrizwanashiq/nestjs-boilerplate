@@ -13,7 +13,7 @@ describe('Almuhasba auth test', () => {
 
   beforeAll(async () => {
     const db = await mongoose.connect(
-     process.env.MONGODB_URI
+      process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/game-of-tests',
     );
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],

@@ -12,8 +12,8 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { setupSwagger } from './setup-swagger';
-import { ConfigrationService } from './configration/configration.service';
-import { ConfigrationModule } from './configration/configration.module';
+import { ConfigurationService } from './configuration/configuration.service';
+import { ConfigurationModule } from './configuration/configuration.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule,
@@ -30,16 +30,14 @@ async function bootstrap() {
       }),
     );
   
-
     app.enableVersioning();
-   
-  
+    
     app.useGlobalPipes(
       new ValidationPipe({
       }),
     );
   
-    const configService = app.select(ConfigrationModule).get(ConfigrationService);
+    const configService = app.select(ConfigurationModule).get(ConfigurationService);
     if (configService.documentationEnabled) {
       setupSwagger(app);
     }

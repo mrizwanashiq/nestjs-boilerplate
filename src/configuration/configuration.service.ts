@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import type { MongooseModuleOptions } from '@nestjs/mongoose';
 @Injectable()
-export class ConfigrationService {
+export class ConfigurationService {
   get mongooseConfig(): MongooseModuleOptions {
     return {
       uri: process.env.MONGODB_URI,

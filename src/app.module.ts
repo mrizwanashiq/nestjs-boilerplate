@@ -4,8 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
-import { ConfigrationModule } from './configration/configration.module';
-import { ConfigrationService } from './configration/configration.service';
+import { ConfigurationModule } from './configuration/configuration.module';
+import { ConfigurationService } from './configuration/configuration.service';
 import { LoggerModule } from './logger/logger.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
@@ -14,17 +14,17 @@ import { CaslModule } from './casl/casl.module';
 
 
 @Module({
-  imports: [UserModule, ConfigrationModule,
+  imports: [UserModule, ConfigurationModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     MongooseModule.forRootAsync({
-      imports: [ConfigrationModule],
-      useFactory: async (configService: ConfigrationService) => (
+      imports: [ConfigurationModule],
+      useFactory: async (configService: ConfigurationService) => (
         configService.mongooseConfig
       ),
-      inject: [ConfigrationService],
+      inject: [ConfigurationService],
     }),
     LoggerModule,
     AuthModule,

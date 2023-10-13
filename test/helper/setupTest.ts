@@ -6,8 +6,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 const mongoose = require('mongoose');
 import { ConfigModule } from '@nestjs/config'
 import { MongooseModule, getModelToken } from '@nestjs/mongoose'
-import { ConfigrationModule } from '../../src/configration/configration.module';
-import { ConfigrationService } from '../../src/configration/configration.service';
+import { ConfigurationModule } from '../../src/configuration/configuration.module';
+import { ConfigurationService } from '../../src/configuration/configuration.service';
 import { newUser } from './users';
 import { JwtService } from '@nestjs/jwt';
 let user:any={};
@@ -33,11 +33,11 @@ export const setupTestDB = async () => {
                 cache: true
             }),
             MongooseModule.forRootAsync({
-                imports: [ConfigrationModule],
-                useFactory: async (configService: ConfigrationService) => (
+                imports: [ConfigurationModule],
+                useFactory: async (configService: ConfigurationService) => (
                     configService.mongooseConfig
                 ),
-                inject: [ConfigrationService],
+                inject: [ConfigurationService],
             }),
             MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])//-------import model here
         ],

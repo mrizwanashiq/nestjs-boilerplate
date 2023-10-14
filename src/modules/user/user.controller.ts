@@ -8,14 +8,14 @@ import {
     UseInterceptors,
     ValidationPipe,
   } from '@nestjs/common';
-  import { ApiResponse, ApiTags } from '@nestjs/swagger';
-  import { UserService } from './user.service';
-  import { LoggerService } from '../../logger/logger.service';
-  import {LoggerMessages} from '../../exceptions/index';
-  import { ApiPageOkResponse, Auth, AuthUser } from '../../decorators';
-  import { RoleType } from '../../constants';
-  import {User} from './user.schema'
-  import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UserService } from './user.service';
+import { LoggerService } from '../../logger/logger.service';
+import {LoggerMessages} from '../../exceptions/index';
+import { ApiPageOkResponse, Auth, AuthUser } from '../../decorators';
+import { RoleType } from '../../constants';
+import {User} from './user.schema'
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
 import { Action } from '../../casl/userRoles';
 @Controller('user')
 @ApiTags('users')

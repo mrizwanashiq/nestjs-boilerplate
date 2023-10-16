@@ -1,10 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Document } from 'mongoose';
-import {  IsInt,IsString, MinLength, MaxLength, IsEmail, IsEnum, IsOptional } from 'class-validator';
+import {
+  IsInt,
+  IsString,
+  MinLength,
+  MaxLength,
+  IsEmail,
+  IsEnum,
+  IsOptional,
+} from 'class-validator';
 import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
 import { RoleType } from '../constants/role-type';
-import {Permission} from './permission.schema'
+import { Permission } from './permission.schema';
 export type RoleDocument = Role & Document;
 @Schema({
   toJSON: {
@@ -13,23 +21,21 @@ export type RoleDocument = Role & Document;
   },
 })
 export class Role {
-  id:string
+  id: string;
 
   @IsEnum(RoleType)
   @ApiProperty()
-  @Prop({ enum : RoleType, default: RoleType.USER  })
+  @Prop({ enum: RoleType, default: RoleType.USER })
   role: string;
-
 
   @ApiProperty()
   permissions: [Permission];
 }
 
- const RoleSchema = SchemaFactory.createForClass(Role);
+const RoleSchema = SchemaFactory.createForClass(Role);
 
-
- RoleSchema.virtual('id').get(function (this: RoleDocument) {
-  return this._id.toString()
+RoleSchema.virtual('id').get(function (this: RoleDocument) {
+  return this._id.toString();
 });
-export {RoleSchema}
+export { RoleSchema };
 export const permissionJsonSchema = validationMetadatasToSchemas();

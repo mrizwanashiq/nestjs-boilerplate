@@ -10,25 +10,22 @@ import { UserService } from '../user/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    private userService: UserService,
-  ) {
+  constructor(private userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey : "AlmuhasbaApiBackend",
+      secretOrKey: 'AlmuhasbaApiBackend',
     });
   }
 
-  async validate(args: {
-    userId: string;
-    role: RoleType;
-    type: TokenType;
-  }) {
+  async validate(args: { userId: string; role: RoleType; type: TokenType }) {
     if (args.type !== TokenType.ACCESS_TOKEN) {
       throw new UnauthorizedException();
     }
 
-    const user = await this.userService.findOne({id:args.userId,role:args.role});
+    const user = await this.userService.findOne({
+      id: args.userId,
+      role: args.role,
+    });
 
     if (!user) {
       throw new UnauthorizedException();

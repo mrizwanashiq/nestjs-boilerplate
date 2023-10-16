@@ -12,9 +12,7 @@ describe('Almuhasba auth test', () => {
   let helper: Helper;
 
   beforeAll(async () => {
-    const db = await mongoose.connect(
-     process.env.MONGODB_URI
-    );
+    const db = await mongoose.connect(process.env.MONGODB_URI);
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();

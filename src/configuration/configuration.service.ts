@@ -21,7 +21,7 @@ export class ConfigurationService {
 
   get appConfig() {
     return {
-      port: process.env.PORT || 3000
+      port: process.env.PORT || 3000,
     };
   }
 

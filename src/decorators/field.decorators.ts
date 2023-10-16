@@ -62,8 +62,6 @@ export function NumberField(
     );
   }
 
-
-
   if (int) {
     decorators.push(IsInt({ each }));
   } else {
@@ -116,8 +114,6 @@ export function StringField(
     decorators.push(MaxLength(options.maxLength));
   }
 
-
-
   return applyDecorators(...decorators);
 }
 
@@ -131,11 +127,6 @@ export function StringFieldOptional(
   );
 }
 
-
-
-
-
-
 export function EnumField<TEnum>(
   getEnum: () => TEnum,
   options: Omit<ApiPropertyOptions, 'type' | 'enum' | 'enumName'> &
@@ -147,7 +138,6 @@ export function EnumField<TEnum>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const enumValue = getEnum() as any;
   const decorators = [IsEnum(enumValue as object, { each: options.each })];
-
 
   return applyDecorators(...decorators);
 }
@@ -162,6 +152,3 @@ export function EnumFieldOptional<TEnum>(
     EnumField(getEnum, { required: false, ...options }),
   );
 }
-
-
-

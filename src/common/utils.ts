@@ -1,4 +1,4 @@
-const bcrypt= require('bcrypt');
+const bcrypt = require('bcrypt');
 
 import type { Optional } from '../types';
 

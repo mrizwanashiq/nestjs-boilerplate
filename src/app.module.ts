@@ -12,26 +12,26 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/auth.guard';
 import { CaslModule } from './casl/casl.module';
 
-
 @Module({
-  imports: [UserModule, ConfigurationModule,
+  imports: [
+    UserModule,
+    ConfigurationModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigurationModule],
-      useFactory: async (configService: ConfigurationService) => (
-        configService.mongooseConfig
-      ),
+      useFactory: async (configService: ConfigurationService) =>
+        configService.mongooseConfig,
       inject: [ConfigurationService],
     }),
     LoggerModule,
     AuthModule,
     CaslModule,
-    ],
+  ],
   controllers: [AppController],
   providers: [AppService],
-  exports:[AppModule]
+  exports: [AppModule],
 })
 export class AppModule {}
